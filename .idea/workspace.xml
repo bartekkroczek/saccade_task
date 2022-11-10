@@ -4,14 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8a75e6e-8c8b-4a76-afd1-a6eb138ef503" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/messages/before_experiment_PS.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+    <list default="true" id="f8a75e6e-8c8b-4a76-afd1-a6eb138ef503" name="Changes" comment="Procedure ready for pilot">
+      <change afterPath="$PROJECT_DIR$/messages/before_AS_block.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messages/before_PS_block.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messages/before_experiment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messages/before_training.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/messages/hello.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/M20_475_beh.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/M20_766_beh.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/M20_815_beh.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/test1M20_586_beh.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/test1M20_691_beh.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/test1M20_701_beh.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/break.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/break.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/before_experiment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/before_experiment_AS.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/before_training.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/before_training_2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/hello.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/before_training_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mask.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mask2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mask3.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mask4.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_experiment_AS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_experiment_PS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_training_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_training_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/break.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/end.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/end.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +71,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\barte\PycharmProjects\saccade_task\messages" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\barte\PycharmProjects\saccade_task\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -94,7 +116,25 @@
       <workItem from="1667648809245" duration="8472000" />
       <workItem from="1667672812461" duration="2955000" />
       <workItem from="1667924334965" duration="8000" />
+      <workItem from="1667925205038" duration="53000" />
+      <workItem from="1668008208043" duration="874000" />
+      <workItem from="1668009158214" duration="11299000" />
     </task>
+    <task id="LOCAL-00001" summary="Switching between machines">
+      <created>1667925242670</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667925242670</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Procedure ready for pilot">
+      <created>1668079395162</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668079395172</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,7 +151,12 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Switching between machines" />
+    <MESSAGE value="Procedure ready for pilot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Procedure ready for pilot" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/saccade_task$main.coverage" NAME="main Coverage Results" MODIFIED="1667674458250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/saccade_task$main.coverage" NAME="main Coverage Results" MODIFIED="1668078519021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

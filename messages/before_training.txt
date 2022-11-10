@@ -1,0 +1,5 @@
+Teraz rozpoczniemy trening. Przypominamy, Twoje zadanie polega na wciśnięciu klawisza
+odpowiadającego kierunkowi szybko znikającej na ekranie strzałki.
+
+Odpowiadaj klawiszami strzałek na klawiaturze, wskazując jaką strzałkę widziałeś/aś.
+Przyciśnij SPACJĘ by rozpocząć.

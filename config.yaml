@@ -1,27 +1,33 @@
 # All values in no of frames
+# Looks
 BACKGROUND_COLOR: darkgray
-FRAME_RATE: 60
 FIX_CROSS_TIME: 30
-TRAINING_BLOCKS: [[5, 30, PS], [2, 18, AS]] # (no_trials_blk_1, stim_time_blk_1), (no_trials_blk_2, stim_time_blk_2), ...
-INTRA_BLOCK_TRAINIG: 2
-EXP_BLOCKS: [[3, PS], [2, AS]] #(multiplier_of_all_CSI_POSSIBLE_1, AS = ANTISACCADE blk, PS = PROSACCADE blk), (..., ... ), ...
-TRAINING_CSI: 10
 FIX_CROSS_COLOR: black
 QUE_COLOR: darkred
 QUE_RADIUS: 20
-QUE_SPEED: 2 
+QUE_SPEED: 2
 QUE_FREQ: 3
 QUE_SHIFT: 40
-STIM_LETTERS: ←→↑↓
 STIM_SIZE: 25
 STIM_SHIFT: 600
-STIM_TIME: 15 # At start, adaptively changed during exp
+REACTION_KEYS_SEP: 30
+STIM_COLOR: dimgray
+# Technicalities
+FRAME_RATE: 60
+# Logic
+STIM_LETTERS: ←→↑↓
 REACTION_TIME: 90
 MASK_TIME: 10
 REACTION_KEYS: [left, right, up, down]
-REACTION_KEYS_SEP: 30
+## Training
+TRAINING_CSI: 10
+INTRA_BLOCK_TRAINING: 2
+TRAINING_BLOCKS: [[4, 30, PS], [2, 18, AS]] # (no_trials_blk_1, stim_time_blk_1, AS/PS), (..., ..., ...), ..
+## Experiment
+EXP_BLOCKS: [[4, PS], [2, AS]] #(no_trials_1, AS = ANTISACCADE blk, PS = PROSACCADE blk), (..., ... ), ...
+START_STIM_TIME_AS: 15 # At start, adaptively changed during exp
+START_STIM_TIME_PS: 10 # At start, adaptively changed during exp
 CSI_POSSIBLE: [30, 60]
 # CSI_POSSIBLE: [12, 18, 24, 30, 36, 42, 48, 54, 60, 72, 84, 96, 108, 120, 150, 180]
 # CSI_BAND: [10,12]
-STIM_COLOR: dimgray
 

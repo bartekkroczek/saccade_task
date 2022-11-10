@@ -1,0 +1,13 @@
+W tym zadaniu będziesz reagował wciśnięciem stosownego klawisza na kierunek, jaki wskazuje mała strzałka.
+Pojawienie się strzałki będzie zawsze poprzedzone czerwonym migającym kółkiem.
+Strzałka pojawi się albo W TYM SAMYM MIEJSCU co kółko, albo PO PRZECIWNEJ STRONIE EKRANU.
+Zawsze będziesz wiedział gdzie spodziewać się strzałki, ponieważ będziemy Cię o tym
+informować komunikatami takimi jak ten.
+
+Przebieg zadania będzie następujący:
+Najpierw na środku ekranu pojawi się krzyżyk. Skieruj swój wzrok na krzyżyk.
+Następnie po lewej lub prawej stronie pojawi się czerwone kółko. NIE PATRZ NA KÓŁKO.
+Bardzo szybko po tym pojawi się mała strzałka.
+Strzałka będzie wskazywać lewo, prawo, górę albo dół i szybko zniknie.
+Musisz zdążyć zobaczyć jaka strzałka została wyświetlona.
+Odpowiadaj klawiszami strzałek na klawiaturze, wskazując jaką strzałkę widziałeś/aś.
