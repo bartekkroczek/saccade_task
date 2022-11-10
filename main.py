@@ -12,7 +12,6 @@ import codecs
 import csv
 import random
 from os.path import join
-from statistics import mean
 from typing import List, Tuple, Any
 
 import yaml
@@ -22,7 +21,7 @@ from misc.screen_misc import get_screen_res, get_frame_rate
 
 __author__ = "Bartek Kroczek"
 __copyright__ = "Copyright 2022, Cognitive Processes Labolatory at Jagiellonian University, Cracow, Poland"
-__credits__ = ["Adam Chuderski"]
+__credits__ = ["Bartek Kroczek", "Adam Chuderski"]
 __license__ = "MIT"
 __version__ = "0.1"
 __maintainer__ = "Bartek Kroczek"
@@ -156,12 +155,13 @@ def main():
     if not dictDlg.OK:
         abort_with_error('Info dialog terminated.')
 
+    # === Procedure init ===
     PART_ID = info['IDENTYFIKATOR'] + info[u'P\u0141EC'] + info['WIEK']
     logging.LogFile(join('results', PART_ID + '.log'), level=logging.INFO)  # errors logging
 
     clock: core.Clock = core.Clock()
     conf: dict = yaml.load(open('config.yaml', encoding='utf-8'), Loader=yaml.SafeLoader)
-    # === Scene init ===
+
     win = visual.Window(list(SCREEN_RES.values()), fullscr=False, monitor='testMonitor', units='pix',
                         screen=0, color=conf['BACKGROUND_COLOR'])
     event.Mouse(visible=False, newPos=None, win=win)  # Make mouse invisible
@@ -179,7 +179,7 @@ def main():
     fix_cross = visual.TextStim(win, text='+', height=100, color=conf['FIX_CROSS_COLOR'])
     que = visual.Circle(win, radius=conf['QUE_RADIUS'], fillColor=conf['QUE_COLOR'], lineColor=conf['QUE_COLOR'])
     stim = visual.TextStim(win, text='', height=conf['STIM_SIZE'], color=conf['STIM_COLOR'])
-    mask = visual.ImageStim(win, image='mask4.png', size=(conf['STIM_SIZE'], conf['STIM_SIZE']))
+    mask = visual.ImageStim(win, image=join('images', 'mask4.png'), size=(conf['STIM_SIZE'], conf['STIM_SIZE']))
     separator = [' ' * conf['REACTION_KEYS_SEP']] * len(conf['REACTION_KEYS'])
     question_frame = visual.TextStim(win, text="".join(["".join(x) for x in zip(conf['STIM_LETTERS'], separator)]),
                                      height=30,
@@ -187,17 +187,19 @@ def main():
     question_label = visual.TextStim(win, text="".join(["".join(x) for x in zip(conf['REACTION_KEYS'], separator)]),
                                      height=30, pos=(100, -330), color=conf['FIX_CROSS_COLOR'], wrapWidth=10000)
     trial_no = 1
-    # === Training ===
 
+    show_info(win, join('.', 'messages', 'hello.txt'))
+    show_info(win, join('.', 'messages', 'before_training.txt'))
+    # === Training ===
     for block_no, (no_trials, stim_time, block_type) in enumerate(conf['TRAINING_BLOCKS'], start=1):
-        show_info(win, join('.', 'messages', f'before_training_{block_no}.txt'))
+        show_info(win, join('.', 'messages', f'before_{block_type}_block.txt'))
         csi_list = [conf['TRAINING_CSI']] * no_trials
         for csi in csi_list:
             key_pressed, rt, stim_letter, choice, corr = run_trial(win, conf, block_type, fix_cross, csi, que, stim,
-                                                                   clock,
-                                                                   question_frame, question_label, mask, stim_time)
+                                                                   clock, question_frame, question_label, mask,
+                                                                   stim_time)
             RESULTS.append(
-                [PART_ID, block_no, trial_no, block_type, 'training', csi, stim_letter, key_pressed, choice, rt, corr,
+                [PART_ID, block_no, trial_no, block_type, 'train', csi, stim_letter, key_pressed, choice, rt, corr,
                  stim_time])
 
             feedb = "Poprawnie" if corr else "Niepoprawnie"
@@ -211,38 +213,43 @@ def main():
 
     # === Experiment ===
 
-    stim_time = conf['STIM_TIME']
-
+    stim_times = dict(AS=conf['START_STIM_TIME_AS'], PS=conf['START_STIM_TIME_PS'])
+    show_info(win, join('.', 'messages', 'before_experiment.txt'))
     for block_no, (no_trials, block_type) in enumerate(conf['EXP_BLOCKS'], start=1):
-        show_info(win, join('.', 'messages', f'before_experiment_{block_type}.txt'))
-        for _ in range(conf['INTRA_BLOCK_TRAINIG']):
+        show_info(win, join('.', 'messages', f'before_{block_type}_block.txt'))
+        for _ in range(conf['INTRA_BLOCK_TRAINING']):
             csi = random.choice(conf['CSI_POSSIBLE'])
+            stim_time = int(1.5 * stim_times[block_type])
             key_pressed, rt, stim_letter, choice, corr = run_trial(win, conf, block_type, fix_cross, csi, que, stim,
                                                                    clock, question_frame, question_label, mask,
                                                                    stim_time)
             RESULTS.append(
-                [PART_ID, block_no, trial_no, block_type, 'train', csi, stim_letter, key_pressed, choice, rt, corr,
+                [PART_ID, block_no, trial_no, block_type, 'intra_train', csi, stim_letter, key_pressed, choice, rt, corr,
                  stim_time])
             trial_no += 1
 
-        csi_list = conf['CSI_POSSIBLE'] * no_trials
+        csi_list = conf['CSI_POSSIBLE'] * (no_trials // len(conf['CSI_POSSIBLE']))
         random.shuffle(csi_list)
-        corrs = list()
+        last_trial_corr: bool = False
         for csi in csi_list:
+            stim_time = stim_times[block_type]
             key_pressed, rt, stim_letter, choice, corr = run_trial(win, conf, block_type, fix_cross, csi, que, stim,
                                                                    clock, question_frame, question_label, mask,
                                                                    stim_time)
-            corrs.append(corr)
             RESULTS.append([PART_ID, block_no, trial_no, block_type, 'exp', csi, stim_letter, key_pressed, choice, rt,
                             corr, stim_time])
             trial_no += 1
-        #  Basic adaptation
-        if mean(corrs) > 0.9 and stim_time > 12:
-            stim_time -= 1
-        elif mean(corrs) < 0.6 and stim_time < 18:
-            stim_time += 1
+            #  2-Up/1-down Adaptation
+            if corr and last_trial_corr:
+                last_trial_corr = False
+                stim_times[block_type] -= 1
+            elif corr and (not last_trial_corr):
+                last_trial_corr = True
+            elif not corr:
+                last_trial_corr = False
+                stim_times[block_type] += 1
 
-        show_image(win, 'break.jpg', size=[SCREEN_RES['width'], SCREEN_RES['height']])
+        show_image(win, join('images', 'break.jpg'), size=[SCREEN_RES['width'], SCREEN_RES['height']])
 
         # === Cleaning time ===
     logging.flush()
@@ -251,26 +258,28 @@ def main():
 
 
 def run_trial(win: visual.Window, conf: dict, block_type: str, fix_cross, csi: int, que, stim, clock: core.Clock,
-              question_frame: visual.TextStim, question_label: visual.TextStim, mask, stim_time: int) -> Tuple[
-    str | Any, float | Any, Any, str | Any, bool]:
-    que_pos = random.choice([-conf['STIM_SHIFT'], conf['STIM_SHIFT']])
-    if block_type == 'AS':
+              question_frame: visual.TextStim, question_label: visual.TextStim, mask, stim_time: int
+              ) -> Tuple[str | Any, float | Any, Any, str | Any, bool]:
+    que_pos = random.choice([-conf['STIM_SHIFT'], conf['STIM_SHIFT']])  # Que on left or right side of a screen
+    if block_type == 'AS':  # stim and mask on the opposite side of que
         stim.pos = [-que_pos, 0]
         mask.pos = [-que_pos, 0]
-    elif block_type == 'PS':
+    elif block_type == 'PS':  # stim, mask and que on this same side of a screen
         stim.pos = [que_pos, 0]
         mask.pos = [que_pos, 0]
     else:
         raise ValueError('Only prosaccadic and antysaccadic trials suported.')
+
     stim.text = random.choice(conf['STIM_LETTERS'])
 
     for _ in range(conf['FIX_CROSS_TIME']):
         fix_cross.draw()
         win.flip()
+
     for _ in range(csi):
         win.flip()
 
-    for _ in range(conf['QUE_FREQ']):
+    for _ in range(conf['QUE_FREQ']):  # que is not static, it is blinking and moving on a screen
         if _ % 2 == 0:
             que.pos = [que_pos + conf['QUE_SHIFT'], 0]
         else:
@@ -281,6 +290,7 @@ def run_trial(win: visual.Window, conf: dict, block_type: str, fix_cross, csi: i
 
     win.callOnFlip(clock.reset)
     event.clearEvents()
+
     for _ in range(stim_time):
         stim.draw()
         win.flip()
