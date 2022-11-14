@@ -5,32 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8a75e6e-8c8b-4a76-afd1-a6eb138ef503" name="Changes" comment="Procedure ready for pilot">
-      <change afterPath="$PROJECT_DIR$/messages/before_AS_block.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messages/before_PS_block.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messages/before_experiment.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messages/before_training.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messages/hello.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/M20_475_beh.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/M20_766_beh.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/M20_815_beh.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/test1M20_586_beh.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/test1M20_691_beh.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/test1M20_701_beh.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/break.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/break.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mask.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mask2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mask3.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mask4.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/mask4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/before_experiment_AS.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/before_experiment_PS.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/before_training_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/before_training_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/break.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/end.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/end.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +93,8 @@
       <workItem from="1667924334965" duration="8000" />
       <workItem from="1667925205038" duration="53000" />
       <workItem from="1668008208043" duration="874000" />
-      <workItem from="1668009158214" duration="11299000" />
+      <workItem from="1668009158214" duration="11326000" />
+      <workItem from="1668097949114" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="Switching between machines">
       <created>1667925242670</created>
@@ -134,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668079395172</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Procedure ready for pilot">
+      <created>1668079651913</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668079651913</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

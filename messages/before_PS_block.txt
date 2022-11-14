@@ -1,4 +1,4 @@
-W nadchodzącym bloku strzałka będzie pojawiała się W TYM SAMYM MIEJSCU co kółko.
+W nadchodzącym bloku strzałka będzie pojawiała się zawsze W TYM SAMYM MIEJSCU co kółko.
 Jest normalne, że czasem nie uda Ci się zdążyć zobaczyć strzałkę, nie przejmuj się, ale staraj się
 wykonywać zadanie jak najlepiej!
 
