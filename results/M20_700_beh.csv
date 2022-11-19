@@ -1,8 +1,0 @@
-PART_ID,Block_no,Trial_no,Block_type,Trial_type,CSI,Stim_letter,Key_pressed,letter_choose,Rt,Corr,Stimulus Time
-M20,1,1,PS,training,10,↑,up,↑,1.1529031999816652,True,30
-M20,1,2,PS,training,10,←,left,←,0.8176768000121228,True,30
-M20,1,3,PS,training,10,↓,down,↓,0.864196600014111,True,30
-M20,1,4,PS,training,10,←,right,→,0.7163883000030182,False,30
-M20,1,5,PS,training,10,↓,down,↓,0.7673668999923393,True,30
-M20,2,6,AS,training,10,↑,up,↑,0.6485575000115205,True,18
-M20,2,7,AS,training,10,←,left,←,0.7983815000043251,True,18

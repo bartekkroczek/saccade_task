@@ -4,8 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8a75e6e-8c8b-4a76-afd1-a6eb138ef503" name="Changes" comment="Procedure ready for pilot">
+    <list default="true" id="f8a75e6e-8c8b-4a76-afd1-a6eb138ef503" name="Changes" comment="Slight messages change.">
+      <change afterPath="$PROJECT_DIR$/Adaptives/AbstractAdaptive.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Adaptives/MaxIters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Adaptives/NUpNDown.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Adaptives/NUpNDownMaxIters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Adaptives/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/M20_19-11-2022_15-58-22_beh.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_AS_block.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/before_AS_block.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_PS_block.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/before_PS_block.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_experiment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/before_experiment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/before_training.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/before_training.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/hello.txt" beforeDir="false" afterPath="$PROJECT_DIR$/messages/hello.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_183_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_187_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_435_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_458_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_475_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_575_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_700_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_728_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_766_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_815_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_883_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/M20_977_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/TESTM20_223_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/TESTM20_571_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/test1M20_586_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/test1M20_691_beh.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/test1M20_701_beh.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +125,10 @@
       <workItem from="1668008208043" duration="874000" />
       <workItem from="1668009158214" duration="11326000" />
       <workItem from="1668097949114" duration="2000" />
+      <workItem from="1668438631218" duration="253000" />
+      <workItem from="1668447417747" duration="97000" />
+      <workItem from="1668677053665" duration="9000" />
+      <workItem from="1668798764933" duration="13458000" />
     </task>
     <task id="LOCAL-00001" summary="Switching between machines">
       <created>1667925242670</created>
@@ -117,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668079651913</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Slight messages change.">
+      <created>1668438877202</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668438877202</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,9 +178,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Switching between machines" />
     <MESSAGE value="Procedure ready for pilot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Procedure ready for pilot" />
+    <MESSAGE value="Slight messages change." />
+    <option name="LAST_COMMIT_MESSAGE" value="Slight messages change." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/saccade_task$main.coverage" NAME="main Coverage Results" MODIFIED="1668078519021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/saccade_task$main.coverage" NAME="main Coverage Results" MODIFIED="1668870043983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

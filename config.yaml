@@ -18,16 +18,25 @@ FRAME_RATE: 60
 STIM_LETTERS: ←→↑↓
 REACTION_TIME: 90
 MASK_TIME: 10
-REACTION_KEYS: [left, right, up, down]
+REACTION_KEYS: [ left, right, up, down ]
+REST_TIME_RANGE: [ 20, 40 ]
 ## Training
 TRAINING_CSI: 10
-INTRA_BLOCK_TRAINING: 2
-TRAINING_BLOCKS: [[4, 30, PS], [2, 18, AS]] # (no_trials_blk_1, stim_time_blk_1, AS/PS), (..., ..., ...), ..
-## Experiment
-EXP_BLOCKS: [[4, PS], [2, AS]] #(no_trials_1, AS = ANTISACCADE blk, PS = PROSACCADE blk), (..., ... ), ...
-START_STIM_TIME_AS: 15 # At start, adaptively changed during exp
+INTRA_BLOCK_TRAINING: 5
+TRAINING_BLOCKS: [ [ 10, 30, PS ], [ 10, 60, AS ] ] # (no_trials_blk_1, stim_time_blk_1, AS/PS), (..., ..., ...), ..
+ADAPTIVE_BLOCKS: [ PS, AS ]
+START_STIM_TIME_AS: 20 # At start, adaptively changed during exp
 START_STIM_TIME_PS: 10 # At start, adaptively changed during exp
-CSI_POSSIBLE: [30, 60]
+MAX_REVS: 4
+N_UP: 2
+N_DOWN: 1
+## Experiment
+# Half of participants starts with a PS, second half with AS
+EXP_BLOCKS: [ [ [ 95, PS ], [ 95, AS ] , [ 95, AS ], [ 95, PS ], [ 95, PS ],  [ 95, AS ] , [ 95, AS ], [ 95, PS ] ],
+              [ [ 95, AS ], [ 95, PS ] , [ 95, PS ], [ 95, AS ], [ 95, AS ],  [ 95, PS ] , [ 95, PS ], [ 95, AS ] ] ]
+#(no_trials_1, AS = ANTISACCADE blk, PS = PROSACCADE blk), (..., ... ), ...
+CSI_POSSIBLE: [ 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46,47, 48, 49, 50 ]
+# Works as jitter 400-800 ms. 
 # CSI_POSSIBLE: [12, 18, 24, 30, 36, 42, 48, 54, 60, 72, 84, 96, 108, 120, 150, 180]
 # CSI_BAND: [10,12]
 

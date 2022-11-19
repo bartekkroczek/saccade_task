@@ -9,14 +9,17 @@ from __future__ import annotations
 
 import atexit
 import codecs
+import copy
 import csv
 import random
+from datetime import datetime
 from os.path import join
 from typing import List, Tuple, Any
 
 import yaml
 from psychopy import visual, event, logging, gui, core
 
+from Adaptives.NUpNDown import NUpNDown
 from misc.screen_misc import get_screen_res, get_frame_rate
 
 __author__ = "Bartek Kroczek"
@@ -30,21 +33,17 @@ __status__ = "Preparation"
 
 # GLOBALS
 
-
+LAST_STIM = ''
 RESULTS = list()
 RESULTS.append(['PART_ID', 'Block_no', 'Trial_no', 'Block_type', 'Trial_type', 'CSI', 'Stim_letter', 'Key_pressed',
                 'letter_choose', 'Rt', 'Corr', 'Stimulus Time'])
 
 
 @atexit.register
-def save_beh_results():
-    """
-    Dumps all gathered data into file.
-    Returns:
-
-    """
-    with open(join('results', PART_ID + '_' + str(random.choice(range(100, 1000))) + '_beh.csv'), 'w',
-              encoding='utf-8') as beh_file:
+def save_beh_results() -> None:
+    now = datetime.now()
+    path = join('results', f'{PART_ID}_{now.strftime("%d-%m-%Y_%H-%M-%S")}_beh.csv')
+    with open(path, 'w', encoding='utf-8') as beh_file:
         beh_writer = csv.writer(beh_file)
         beh_writer.writerows(RESULTS)
     logging.flush()
@@ -162,7 +161,7 @@ def main():
     clock: core.Clock = core.Clock()
     conf: dict = yaml.load(open('config.yaml', encoding='utf-8'), Loader=yaml.SafeLoader)
 
-    win = visual.Window(list(SCREEN_RES.values()), fullscr=False, monitor='testMonitor', units='pix',
+    win = visual.Window(list(SCREEN_RES.values()), fullscr=True, monitor='testMonitor', units='pix',
                         screen=0, color=conf['BACKGROUND_COLOR'])
     event.Mouse(visible=False, newPos=None, win=win)  # Make mouse invisible
     FRAME_RATE: int = get_frame_rate(win)
@@ -190,18 +189,41 @@ def main():
 
     show_info(win, join('.', 'messages', 'hello.txt'))
     show_info(win, join('.', 'messages', 'before_training.txt'))
+
     # === Training ===
     for block_no, (no_trials, stim_time, block_type) in enumerate(conf['TRAINING_BLOCKS'], start=1):
         show_info(win, join('.', 'messages', f'before_{block_type}_block.txt'))
-        csi_list = [conf['TRAINING_CSI']] * no_trials
-        for csi in csi_list:
+        for _ in range(no_trials):
+            csi = random.choice(conf['CSI_POSSIBLE'])
             key_pressed, rt, stim_letter, choice, corr = run_trial(win, conf, block_type, fix_cross, csi, que, stim,
                                                                    clock, question_frame, question_label, mask,
                                                                    stim_time)
             RESULTS.append(
                 [PART_ID, block_no, trial_no, block_type, 'train', csi, stim_letter, key_pressed, choice, rt, corr,
                  stim_time])
+            feedb = "Poprawnie" if corr else "Niepoprawnie"
+            feedb = visual.TextStim(win, text=feedb, height=50, color=conf['FIX_CROSS_COLOR'])
+            feedb.draw()
+            win.flip()
+            core.wait(1)
+            win.flip()
+            trial_no += 1
 
+    # === Adaptively stim times ===
+    start_stim_times = dict()
+    for block_type in conf['ADAPTIVE_BLOCKS']:
+        adaptive = NUpNDown(start_val=conf[f'START_STIM_TIME_{block_type}'], max_revs=conf['MAX_REVS'],
+                            n_up=conf['N_UP'], n_down=conf['N_DOWN'])
+        show_info(win, join('.', 'messages', f'before_{block_type}_block.txt'))
+        for idx, stim_time in enumerate(adaptive, 1):
+            csi = random.choice(conf['CSI_POSSIBLE'])
+            key_pressed, rt, stim_letter, choice, corr = run_trial(win, conf, block_type, fix_cross, csi, que, stim,
+                                                                   clock, question_frame, question_label, mask,
+                                                                   stim_time)
+            adaptive.set_corr(corr)
+            RESULTS.append(
+                [PART_ID, '-', trial_no, block_type, 'adaptive', csi, stim_letter, key_pressed, choice, rt, corr,
+                 stim_time])
             feedb = "Poprawnie" if corr else "Niepoprawnie"
             feedb = visual.TextStim(win, text=feedb, height=50, color=conf['FIX_CROSS_COLOR'])
             feedb.draw()
@@ -210,12 +232,12 @@ def main():
             win.flip()
 
             trial_no += 1
+        start_stim_times[block_type] = adaptive.get_curr_val()
 
     # === Experiment ===
-
-    stim_times = dict(AS=conf['START_STIM_TIME_AS'], PS=conf['START_STIM_TIME_PS'])
     show_info(win, join('.', 'messages', 'before_experiment.txt'))
-    for block_no, (no_trials, block_type) in enumerate(conf['EXP_BLOCKS'], start=1):
+    for block_no, (no_trials, block_type) in enumerate(random.choice(conf['EXP_BLOCKS']), start=1):
+        stim_times = copy.copy(start_stim_times)
         show_info(win, join('.', 'messages', f'before_{block_type}_block.txt'))
         for _ in range(conf['INTRA_BLOCK_TRAINING']):
             csi = random.choice(conf['CSI_POSSIBLE'])
@@ -224,13 +246,17 @@ def main():
                                                                    clock, question_frame, question_label, mask,
                                                                    stim_time)
             RESULTS.append(
-                [PART_ID, block_no, trial_no, block_type, 'intra_train', csi, stim_letter, key_pressed, choice, rt, corr,
+                [PART_ID, block_no, trial_no, block_type, 'intra_train', csi, stim_letter, key_pressed, choice, rt,
+                 corr,
                  stim_time])
             trial_no += 1
-
-        csi_list = conf['CSI_POSSIBLE'] * (no_trials // len(conf['CSI_POSSIBLE']))
-        random.shuffle(csi_list)
+            # jitter after trial
+            wait_time_in_secs: float = random.choice(range(*conf['REST_TIME_RANGE'])) / conf['FRAME_RATE']
+            core.wait(wait_time_in_secs)
+        csi_list = random.choices(conf['CSI_POSSIBLE'], k=no_trials)  # sampling WITH replacement
         last_trial_corr: bool = False
+
+        # csi works functionally as a jitter in a range 400-800 ms, but is recorded for future testings.
         for csi in csi_list:
             stim_time = stim_times[block_type]
             key_pressed, rt, stim_letter, choice, corr = run_trial(win, conf, block_type, fix_cross, csi, que, stim,
@@ -239,7 +265,8 @@ def main():
             RESULTS.append([PART_ID, block_no, trial_no, block_type, 'exp', csi, stim_letter, key_pressed, choice, rt,
                             corr, stim_time])
             trial_no += 1
-            #  2-Up/1-down Adaptation
+            #  2-Up/1-down Adaptation WITH LIMIT OF TRIALS
+            # it was far easier to add it manually than make third nesting loop and make new class for NupNDownWTHLIMIT
             if corr and last_trial_corr:
                 last_trial_corr = False
                 stim_times[block_type] -= 1
@@ -248,6 +275,9 @@ def main():
             elif not corr:
                 last_trial_corr = False
                 stim_times[block_type] += 1
+            # jitter after trial
+            wait_time_in_secs: float = random.choice(range(*conf['REST_TIME_RANGE'])) / conf['FRAME_RATE']
+            core.wait(wait_time_in_secs)
 
         show_image(win, join('images', 'break.jpg'), size=[SCREEN_RES['width'], SCREEN_RES['height']])
 
@@ -260,6 +290,7 @@ def main():
 def run_trial(win: visual.Window, conf: dict, block_type: str, fix_cross, csi: int, que, stim, clock: core.Clock,
               question_frame: visual.TextStim, question_label: visual.TextStim, mask, stim_time: int
               ) -> Tuple[str | Any, float | Any, Any, str | Any, bool]:
+    global LAST_STIM
     que_pos = random.choice([-conf['STIM_SHIFT'], conf['STIM_SHIFT']])  # Que on left or right side of a screen
     if block_type == 'AS':  # stim and mask on the opposite side of que
         stim.pos = [-que_pos, 0]
@@ -270,7 +301,8 @@ def run_trial(win: visual.Window, conf: dict, block_type: str, fix_cross, csi: i
     else:
         raise ValueError('Only prosaccadic and antysaccadic trials suported.')
 
-    stim.text = random.choice(conf['STIM_LETTERS'])
+    stim.text = random.choice(conf['STIM_LETTERS'].replace(LAST_STIM, ''))
+    LAST_STIM = stim.text
 
     for _ in range(conf['FIX_CROSS_TIME']):
         fix_cross.draw()
@@ -318,6 +350,7 @@ def run_trial(win: visual.Window, conf: dict, block_type: str, fix_cross, csi: i
         rt = -1.0
         corr = False
         choice = 'no_letter'
+    win.flip()
 
     return key_pressed, rt, stim.text, choice, corr
 

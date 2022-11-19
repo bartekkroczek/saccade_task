@@ -1,5 +1,8 @@
 W nadchodzącym bloku strzałka będzie pojawiała się zawsze PO PRZECIWNEJ STRONIE EKRANU niż kółko.
-Jest normalne, że czasem nie uda Ci się zdążyć zobaczyć strzałkę, nie przejmuj się, ale staraj się
+Gdy na ekranie pojawi się kółko, POWSTRZYMAJ ODRUCH PRZENIESIENIA WZROKU NA KÓŁKO, gdyż strzałka pojawi się
+po przeciwnej stronie ekranu.
+
+Jest normalne, że czasem nie uda Ci się dostrzec strzałki, nie przejmuj się, ale staraj się
 wykonywać zadanie jak najlepiej!
 
 Odpowiadaj klawiszami strzałek na klawiaturze, wskazując jaką strzałkę widziałeś/aś.
