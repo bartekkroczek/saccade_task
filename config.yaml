@@ -21,22 +21,18 @@ MASK_TIME: 10
 REACTION_KEYS: [ left, right, up, down ]
 REST_TIME_RANGE: [ 20, 40 ]
 ## Training
-TRAINING_CSI: 10
-INTRA_BLOCK_TRAINING: 5
-TRAINING_BLOCKS: [ [ 10, 30, PS ], [ 10, 60, AS ] ] # (no_trials_blk_1, stim_time_blk_1, AS/PS), (..., ..., ...), ..
+TRAINING_BLOCKS: [ [ 10, 30, PS ], [ 10, 45, AS ] ] # (no_trials_blk_1, stim_time_blk_1, AS/PS), (..., ..., ...), ..
 ADAPTIVE_BLOCKS: [ PS, AS ]
 START_STIM_TIME_AS: 20 # At start, adaptively changed during exp
 START_STIM_TIME_PS: 10 # At start, adaptively changed during exp
-MAX_REVS: 4
+MAX_REVS_TRAIN: 4
 N_UP: 2
 N_DOWN: 1
 ## Experiment
+INTRA_BLOCK_TRAINING: 5
+MAX_REVS_EXP: 14
 # Half of participants starts with a PS, second half with AS
-EXP_BLOCKS: [ [ [ 95, PS ], [ 95, AS ] , [ 95, AS ], [ 95, PS ], [ 95, PS ],  [ 95, AS ] , [ 95, AS ], [ 95, PS ] ],
-              [ [ 95, AS ], [ 95, PS ] , [ 95, PS ], [ 95, AS ], [ 95, AS ],  [ 95, PS ] , [ 95, PS ], [ 95, AS ] ] ]
-#(no_trials_1, AS = ANTISACCADE blk, PS = PROSACCADE blk), (..., ... ), ...
+EXP_BLOCKS: [ [ PS, AS, AS, PS, PS, AS, AS, PS ], [ AS, PS, PS, AS, AS, PS, PS, AS ] ]
 CSI_POSSIBLE: [ 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46,47, 48, 49, 50 ]
-# Works as jitter 400-800 ms. 
-# CSI_POSSIBLE: [12, 18, 24, 30, 36, 42, 48, 54, 60, 72, 84, 96, 108, 120, 150, 180]
-# CSI_BAND: [10,12]
+# Works as jitter 400-800 ms.
 

@@ -1,5 +1,5 @@
 To zadanie polega na udzieleniu odpowiedzi, w jakim kierunku wskazuje mała i krótko wyświetlana strzałka.
-Odpowiedź będziesz wskazywał poprzez wciśnięcie stosownej strzałki na klawiaturze.
+Odpowiedź będziesz wskazywał poprzez wciśnięcie odpowiedniej strzałki na klawiaturze.
 Pojawienie się strzałki będzie zawsze poprzedzone czerwonym migającym kółkiem.
 Strzałka pojawi się albo W TYM SAMYM MIEJSCU co kółko, albo PO PRZECIWNEJ STRONIE EKRANU.
 Zawsze będziesz wiedział gdzie spodziewać się strzałki. Zadanie podzielone jest na bloki
